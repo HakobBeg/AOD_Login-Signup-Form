@@ -23,8 +23,8 @@ const LogRegForm = (props)=>
 
             <Route exact path="/login" component={LoginForm} />
             <Route path="/register" component={RegistrationForm} />
-            <label>{((props.pagePointer)==='/login')?'Already Registered?':'Are you here for the First time?'}</label>
-            <NavLink to={props.pagePointer}> <button onClick={onClickhandler}>{(props.pagePointer)==='/login'?'Log in':'Sign Up'}</button></NavLink>
+            <label>{((props.pageState.pagePointer)==='/login')?'Already Registered?':'Are you here for the First time?'}</label>
+            <NavLink to={props.pageState.pagePointer}> <button onClick={onClickhandler}>{(props.pageState.pagePointer)==='/login'?'Log in':'Sign Up'}</button></NavLink>
 
 
         </div>

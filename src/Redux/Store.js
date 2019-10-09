@@ -1,8 +1,9 @@
-import { createStore } from "redux";
-import { pageHandler } from "./Reducers";
+import { combineReducers, createStore } from "redux";
+import { rootReducer } from "./Reducers";
 
 
-export const store = createStore(pageHandler);
+
+export const store = createStore(combineReducers(rootReducer));
 
 
 

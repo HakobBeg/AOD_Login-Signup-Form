@@ -18,7 +18,9 @@
     border-style: solid;
     border-color: rgba(218, 218, 218, 0.42);
     border-radius: 3px;
-
+    color: rgba(156, 156, 156, 0.89);
+    font-size: 15px;
+    padding-left: 10px;
 }
 
 .Login button

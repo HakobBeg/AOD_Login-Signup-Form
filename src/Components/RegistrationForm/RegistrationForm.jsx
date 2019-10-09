@@ -1,22 +1,48 @@
 import React from 'react'
 import RegFormCSS from './RegistrationForm.module.css'
 import { connect } from "react-redux";
+import {
+    userEmailTextChanges, userRegisterConfirmPassTextChanges,
+    userRegisterEmailTextChanges, userRegisterNameTextChanges,
+    userRegisterPassTextChanges
+} from "../../Redux/ActionCreators";
 
 const RegistrationForm = (props)=>
 
 {
 
+    let RegEmailInput = React.createRef();
+    let RegPassInput = React.createRef();
+    let RegConfirmPassInput = React.createRef();
+    let RegNameInput = React.createRef();
+
+
+    const EmailInputHandler = () => {
+        props.dispatch(userRegisterEmailTextChanges(RegEmailInput.current.value));
+    };
+
+    const PasswordInputHandler = () => {
+        props.dispatch(userRegisterPassTextChanges(RegPassInput.current.value));
+    };
+
+    const ConfirmPasswordInputHandler = () => {
+        props.dispatch(userRegisterConfirmPassTextChanges(RegConfirmPassInput.current.value));
+    };
+
+    const NameInputHandler = () => {
+        props.dispatch(userRegisterNameTextChanges(RegNameInput.current.value));
+    };
 
     return(
         <div className={RegFormCSS.RegForm}>
             <label>Sign Up</label>
-            <input/>
+            <input ref = {RegEmailInput} onChange={EmailInputHandler} value = {props.registrationPageInputState.regUserEmail}/>
 
-            <input/>
+            <input ref = {RegPassInput} onChange={PasswordInputHandler} value = {props.registrationPageInputState.regUserPassword} type = 'password'/>
 
-            <input/>
+            <input ref = {RegConfirmPassInput}  onChange={ConfirmPasswordInputHandler} value = {props.registrationPageInputState.regUserConfirmPass} type='password' />
 
-            <input/>
+            <input ref = {RegNameInput} onChange={NameInputHandler} value = {props.registrationPageInputState.regUserName}/>
 
 
             <button>Sign Up</button>
