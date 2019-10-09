@@ -1,0 +1,1 @@
+export const pageTurner = 'TURN-PAGE';

@@ -1,0 +1,37 @@
+.Login label {
+    display: block;
+    text-align: center;
+    font-family: Georgia;
+    font-size: 150%;
+    margin-bottom: 5%;
+
+}
+
+
+.Login input {
+
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top:10%;
+    width: 90%;
+    height: 50px;
+    border-style: solid;
+    border-color: rgba(218, 218, 218, 0.42);
+    border-radius: 3px;
+
+}
+
+.Login button
+{
+    width: 90%;
+    height: 50px;
+    border-style: solid;
+    border-color: rgba(218, 218, 218, 0);
+    border-radius: 3px;
+    background-color: rgb(123, 204, 145);
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 130%;
+    color: white;
+    font-family: Roboto;
+}

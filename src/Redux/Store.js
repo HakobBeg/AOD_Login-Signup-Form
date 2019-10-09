@@ -1,6 +1,8 @@
 import { createStore } from "redux";
+import { pageHandler } from "./Reducers";
 
 
-const store = createStore();
+export const store = createStore(pageHandler);
 
-window.x = store;
+
+

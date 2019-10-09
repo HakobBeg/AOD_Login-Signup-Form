@@ -1,13 +1,25 @@
 import React from 'react'
+import RegFormCSS from './RegistrationForm.module.css'
+import { connect } from "react-redux";
 
+const RegistrationForm = (props)=>
 
-const RegistrationForm = ()=>
 {
 
 
     return(
-        <div>
+        <div className={RegFormCSS.RegForm}>
+            <label>Sign Up</label>
+            <input/>
 
+            <input/>
+
+            <input/>
+
+            <input/>
+
+
+            <button>Sign Up</button>
 
         </div>
 
@@ -18,4 +30,6 @@ const RegistrationForm = ()=>
 
 
 
-export default RegistrationForm;
+
+
+export default connect((store)=>{return store})(RegistrationForm);
