@@ -1,12 +1,17 @@
 import React from 'react'
 import LoginCss from './LoginForm.module.css'
 import { connect } from "react-redux";
-import { userEmailTextChanges, userPassTextChanges } from "../../Redux/ActionCreators";
+import { userEmailTextChanges, UserLogIn, userPassTextChanges } from "../../Redux/ActionCreators";
 
 
 const LoginForm = (props) => {
     let EmailInput = React.createRef();
     let PassInput = React.createRef();
+
+    const loginButtonAction = ()=>
+    {
+      props.dispatch(UserLogIn(EmailInput.current.value,PassInput.current.value));
+    };
 
 
     const EmailInputHandler = () => {
@@ -16,7 +21,7 @@ const LoginForm = (props) => {
     const PassInputHandler = ()=>
     {
         props.dispatch(userPassTextChanges(PassInput.current.value));
-    }
+    };
     return (
         <div className={LoginCss.Login}>
             <label>Log in</label>
@@ -25,7 +30,8 @@ const LoginForm = (props) => {
 
             <input  type={props.loginPageInputState.inputType} ref={PassInput} value={props.loginPageInputState.userPassword} onChange={PassInputHandler}/>
 
-            <button>Sign In</button>
+            <button onClick={loginButtonAction}>Sign In</button>
+            <p>{props.loginButton.submitExc}</p>
         </div>
 
     );

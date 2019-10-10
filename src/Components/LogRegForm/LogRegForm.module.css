@@ -39,5 +39,20 @@
 }
 
 
+.languageButtons button
+{
+    font-size: 130%;
+    background-color: #ffffff;
+    color: #282c34;
+    border-style: solid;
+    border-color: rgb(123, 204, 145);
+    border-radius: 3px;
+}
 
+
+/*.languageButtons{*/
+/*    position: absolute;*/
+/*    !*margin-left: 15%;*!*/
+/*    top:50px;*/
+/*}*/
 

@@ -37,3 +37,8 @@
     color: white;
     font-family: Roboto;
 }
+
+.Login p{
+    text-align: center;
+    color: red;
+}
