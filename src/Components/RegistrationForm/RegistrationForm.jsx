@@ -37,13 +37,13 @@ const RegistrationForm = (props)=>
         <div className={RegFormCSS.RegForm}>
             <label>Sign Up</label>
             <input ref = {RegEmailInput} onChange={EmailInputHandler} value = {props.registrationPageInputState.regUserEmail}/>
-
-            <input ref = {RegPassInput} onChange={PasswordInputHandler} value = {props.registrationPageInputState.regUserPassword} type = 'password'/>
-
-            <input ref = {RegConfirmPassInput}  onChange={ConfirmPasswordInputHandler} value = {props.registrationPageInputState.regUserConfirmPass} type='password' />
-
+            <p className={RegFormCSS.inputException}>{props.registrationPageInputState.EmailInputExc}</p>
+            <input ref = {RegPassInput} onChange={PasswordInputHandler} value = {props.registrationPageInputState.regUserPassword}  type={props.registrationPageInputState.passInputType}/>
+            <p className={RegFormCSS.inputException}>{props.registrationPageInputState.PassInputExc}</p>
+            <input ref = {RegConfirmPassInput}  onChange={ConfirmPasswordInputHandler} value = {props.registrationPageInputState.regUserConfirmPass}  type={props.registrationPageInputState.confirmPassInputType} />
+            <p className={RegFormCSS.inputException}>{props.registrationPageInputState.ConfirmPassExc}</p>
             <input ref = {RegNameInput} onChange={NameInputHandler} value = {props.registrationPageInputState.regUserName}/>
-
+            <p className={RegFormCSS.inputException}>{props.registrationPageInputState.NameInputExc}</p>
 
             <button>Sign Up</button>
 
