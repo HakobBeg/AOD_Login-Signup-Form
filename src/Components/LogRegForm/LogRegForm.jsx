@@ -5,7 +5,7 @@ import RegistrationForm from "../RegistrationForm/RegistrationForm";
 import { NavLink, Route } from 'react-router-dom';
 import { changeLanguageInto, pageChangesAC } from "../../Redux/ActionCreators";
 import { connect } from "react-redux";
-import { useTranslation } from "react-i18next";
+
 
 
 
@@ -21,7 +21,7 @@ const Loader=(props)=>{
                 height: "1000px",
 
             }}>
-                <div className={LogRegFormCss.ldshourglass}>
+                <div className={LogRegFormCss.ldshourglass}/>
             </div>
         );
     }
@@ -34,7 +34,7 @@ const Loader=(props)=>{
 };
 
 const LogRegForm = (props) => {
-    const { t } = useTranslation();
+
     const onClickhandler = () => {
 
         props.dispatch(pageChangesAC());
@@ -64,9 +64,9 @@ const LogRegForm = (props) => {
 
                 <Route path="/login"  component={LoginForm}/>
                 <Route path="/register" component={RegistrationForm}/>
-                <label>{((props.pageState.pagePointer) === '/login') ? t('Already Registered?') : t('Are you here for the First time?')}</label>
+                <label>{((props.pageState.pagePointer) === '/login') ? 'Already Registered?' : 'Are you here for the First time?'}</label>
                 <NavLink to={props.pageState.pagePointer}>
-                    <button onClick={onClickhandler}>{(props.pageState.pagePointer) === '/login' ? t('Log in') : t('Sign Up')}</button>
+                    <button onClick={onClickhandler}>{(props.pageState.pagePointer) === '/login' ? 'Log in' : 'Sign Up'}</button>
                 </NavLink>
 
             </div>
