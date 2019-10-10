@@ -1,16 +1,21 @@
 import React from 'react'
 import LoginCss from './LoginForm.module.css'
 import { connect } from "react-redux";
-import { userEmailTextChanges, UserLogIn, userPassTextChanges } from "../../Redux/ActionCreators";
+import { loginReq, userEmailTextChanges, userPassTextChanges } from "../../Redux/ActionCreators";
+import { useTranslation } from "react-i18next";
+
 
 
 const LoginForm = (props) => {
     let EmailInput = React.createRef();
     let PassInput = React.createRef();
+    const { t } = useTranslation();
+
 
     const loginButtonAction = ()=>
     {
-      props.dispatch(UserLogIn(EmailInput.current.value,PassInput.current.value));
+           props.dispatch(loginReq());
+
     };
 
 
@@ -23,17 +28,19 @@ const LoginForm = (props) => {
         props.dispatch(userPassTextChanges(PassInput.current.value));
     };
     return (
-        <div className={LoginCss.Login}>
+
+
+
+            <div className={LoginCss.Login}>
             <label>Log in</label>
-            <input ref={EmailInput} value={props.loginPageInputState.userEmail} onChange={EmailInputHandler}/>
+            <input ref={EmailInput} value={t(props.loginPageInputState.userEmail)} onChange={EmailInputHandler}/>
 
 
-            <input  type={props.loginPageInputState.inputType} ref={PassInput} value={props.loginPageInputState.userPassword} onChange={PassInputHandler}/>
+            <input  type={props.loginPageInputState.inputType} ref={PassInput} value={t(props.loginPageInputState.userPassword)} onChange={PassInputHandler}/>
 
-            <button onClick={loginButtonAction}>Sign In</button>
-            <p>{props.loginButton.submitExc}</p>
+            <button onClick={loginButtonAction}>{t('Sign In')}</button>
+
         </div>
-
     );
 
 

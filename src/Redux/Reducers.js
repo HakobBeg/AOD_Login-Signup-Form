@@ -1,5 +1,8 @@
 import {
-    logIn,
+    languageChangeAction,
+    loaderOffAction,
+    loaderOnAction,
+
     pageTurner,
     usLEmailTextChange,
     usLPassTextChange,
@@ -42,42 +45,47 @@ export const loginInputsReducer = (state = {
 export const registerInputsReducer = (state = {
     regUserEmail: 'E-Mail or Phone', regUserPassword: 'Password',
     regUserConfirmPass: 'Confirm Password', regUserName: 'UserName',
-    EmailInputExc: "", PassInputExc: "", ConfirmPassExc: "", NameInputExc: "",passInputType:"Text",confirmPassInputType:"Text"
+    EmailInputExc: "", PassInputExc: "", ConfirmPassExc: "", NameInputExc: "",passInputType:"Text",confirmPassInputType:"Text",globalExc:""
 }, action) => {
     switch (action.type) {
-        case usRNameTextChange:
-            return Object.assign({}, state, {regUserName: action.payload}, {NameInputExc: nameValidator(action.payload)});
-        case usREmailTextChange:
-            return Object.assign({}, state, {regUserEmail: action.payload}, {EmailInputExc: emailValidator(action.payload)});
-        case usRPassTextChange:
-            return Object.assign({}, state, {regUserPassword: action.payload}, {PassInputExc: passwordValidator(action.payload)},{passInputType:"Password"},
-                {ConfirmPassExc: (state.regUserConfirmPass === action.payload) ? "" : "* Passwords don't matches!"});
+        case usRNameTextChange:{
+            const expt = nameValidator(action.payload);
+            return Object.assign({}, state, {regUserName: action.payload}, {NameInputExc: expt},{globalExc:(expt==="")?"":expt});}
+        case usREmailTextChange:{
+            const expt = emailValidator(action.payload);
+            return Object.assign({}, state, {regUserEmail: action.payload}, {EmailInputExc: expt},{globalExc:(expt==="")?"":expt});}
+        case usRPassTextChange:{
+            const expt = passwordValidator(action.payload);
+            return Object.assign({}, state, {regUserPassword: action.payload}, {PassInputExc: expt},{passInputType:"Password"},{globalExc:(expt==="")?"":expt},
+                {ConfirmPassExc: (state.regUserConfirmPass === action.payload) ? "" : "* Passwords don't matches!"},{globalExc:(state.regUserConfirmPass === action.payload) ? "" : "* Passwords don't matches!"})}
         case usRPassConfirmTextChange:
-            return Object.assign({}, state, {regUserConfirmPass: action.payload},{confirmPassInputType:"Password"},{ConfirmPassExc: (state.regUserPassword === action.payload) ? "" : "* Passwords don't matches!"});
+            return Object.assign({}, state, {regUserConfirmPass: action.payload},{confirmPassInputType:"Password"},{ConfirmPassExc: (state.regUserPassword === action.payload) ? "" : "* Passwords don't matches!"},
+                {globalExc:(state.regUserConfirmPass === action.payload) ? "" : "* Passwords don't matches!"});
         default:
             return state
     }
 };
 
-const logInReducer =(state={submitExc:""},action) =>
-{
-
-    if(action.type===logIn) {
-        if (action.payload.userEmail === "")
-        {
-            return Object.assign({}, state, {submitExc: "* Email is not typed!"});
-        }
-        else if (action.payload.userPass ==="")
-        {
-            return Object.assign({}, state, {submitExc:"* Password is not typed!"});
-        }
-        else{
-            return Object.assign({}, state, {submitExc:""});
-        }
-        }
-    return state;
+export const loaderReducer =(state = {loaderFlag:false},action)=>{
+    switch (action.type) {
+        case loaderOnAction:
+            return Object.assign({},state,{loaderFlag:true});
+        case loaderOffAction:
+            return Object.assign({},state,{loaderFlag:false});
+        default:
+            return state;
+    }
 };
 
+export const languageChangeReducer = (state = {languageSet:"en"},action)=>
+{
+    switch (action.type) {
+        case languageChangeAction:
+            return Object.assign({},state,{languageSet: action.payload});
+        default:
+            return state;
+    }
+};
 
 
 
@@ -85,5 +93,6 @@ export const rootReducer = {
     pageState: pageReducer,
     loginPageInputState: loginInputsReducer,
     registrationPageInputState: registerInputsReducer,
-    loginButton:logInReducer
-}
+    loaderFlagState:loaderReducer,
+    languageState:languageChangeReducer,
+};

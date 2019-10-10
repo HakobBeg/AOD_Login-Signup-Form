@@ -1,6 +1,9 @@
 import {
-    logIn,
-    pageTurner, register,
+     languageChangeAction,
+    loaderOffAction,
+    loaderOnAction,
+    logIn, loginActionAsync,
+    pageTurner, register, registerActionAsync,
     usLEmailTextChange,
     usLPassTextChange,
     usREmailTextChange, usRNameTextChange,
@@ -25,3 +28,14 @@ export const UserLogIn =(mail,pass)=>{return {type:logIn,payload:{userEmail:mail
 //SignUp actionCreator
 export const UserSignUp =()=>{return {type:register}};
 
+
+//saga Action creators
+export const loginReq = ()=>{return {type:loginActionAsync}};
+export const registerReq = ()=>{return {type:registerActionAsync}};
+
+//loader actions
+export const turnLoaderOn=()=>{return {type:loaderOnAction}};
+export const turnLoaderOff=()=>{return {type:loaderOffAction}};
+
+//language actions
+export const changeLanguageInto = (language)=>{return {type:languageChangeAction,payload:language}};

@@ -2,7 +2,8 @@ import React from 'react'
 import RegFormCSS from './RegistrationForm.module.css'
 import { connect } from "react-redux";
 import {
-    userEmailTextChanges, userRegisterConfirmPassTextChanges,
+    registerReq,
+    userRegisterConfirmPassTextChanges,
     userRegisterEmailTextChanges, userRegisterNameTextChanges,
     userRegisterPassTextChanges
 } from "../../Redux/ActionCreators";
@@ -16,6 +17,11 @@ const RegistrationForm = (props)=>
     let RegConfirmPassInput = React.createRef();
     let RegNameInput = React.createRef();
 
+
+    const registerButtonAction=()=>{
+        if(props.registrationPageInputState.globalExc==="")
+            props.dispatch(registerReq());
+    };
 
     const EmailInputHandler = () => {
         props.dispatch(userRegisterEmailTextChanges(RegEmailInput.current.value));
@@ -45,14 +51,14 @@ const RegistrationForm = (props)=>
             <input ref = {RegNameInput} onChange={NameInputHandler} value = {props.registrationPageInputState.regUserName}/>
             <p className={RegFormCSS.inputException}>{props.registrationPageInputState.NameInputExc}</p>
 
-            <button>Sign Up</button>
-
+            <button onClick={registerButtonAction}>Sign Up</button>
+            <p>{props.registrationPageInputState.globalExc}</p>
         </div>
 
     );
 
 
-}
+};
 
 
 
